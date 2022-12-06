@@ -1,0 +1,24 @@
+{
+  "name": "calculator-tool",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amiejah/calculator-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amiejah/calculator-tool/issues"
+  },
+  "homepage": "https://github.com/Amiejah/calculator-tool#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  }
+}
