@@ -81,3 +81,23 @@ button:hover {
   grid-gap: 20px;
   padding: 20px;
 }
+
+.calculation-container {
+
+}
+.calculation-container ol {
+  margin: 0;
+  padding: 0;
+}
+.calculation-container ol li {
+  margin: 0;
+  padding: 0;
+}
+
+.calculation-container ol:has(li) {
+  border-top: 1px solid #c4c4c4;
+  background: rgb(240, 240, 240, .5);
+  padding: 1rem 3.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
