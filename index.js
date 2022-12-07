@@ -28,8 +28,10 @@ keys.addEventListener('click', (event) => {
     case '-':
     case '*':
     case '/':
-    case '=':
       handleOperator(value);
+      break;
+    case '=':
+      handleOperator(value, true);
       break;
     case '.':
       inputDecimal(value);
@@ -75,9 +77,11 @@ function inputDecimal(dot) {
   
 }
 
-function handleOperator(nextOperator) {
+function handleOperator(nextOperator, final = false) {
+  console.log({final});
   // Destructure the properties on the calculator object
   const { firstOperand, displayValue, operator } = calculator
+  console.log(firstOperand, displayValue, operator);
   // `parseFloat` converts the string contents of `displayValue`
   // to a floating-point number
   const inputValue = parseFloat(displayValue);
@@ -94,22 +98,26 @@ function handleOperator(nextOperator) {
     calculator.firstOperand = inputValue;
   } else if (operator) {
     const result = calculate(firstOperand, inputValue, operator);
-
-    insertRecord({
-      question: `${firstOperand}${operator}${inputValue}`,
-      answer: result
-    }).then(response => {
-      if (response.statusText == 'OK') {
-        calculator.displayValue = String(result);
-        calculator.firstOperand = result;
-        loadRecords();
-      }
-    })
+    calculator.displayValue = String(result);
+    calculator.firstOperand = result;
   }
 
 
   calculator.waitingForSecondOperand = true;
   calculator.operator = nextOperator;
+
+  if (final) {
+    console.log(`${firstOperand}${operator}${inputValue}`);
+    console.log(`${calculator.displayValue}`);
+    insertRecord({
+      question: `${firstOperand}${operator}${inputValue}`,
+      answer: calculator.displayValue
+    }).then(response => {
+      if (response.statusText == 'OK') {
+        loadRecords()
+      }
+    })
+  }
 }
 
 function calculate(firstOperand, secondOperand, operator) {
