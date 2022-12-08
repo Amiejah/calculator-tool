@@ -30,3 +30,5 @@ Run the frontend:
 ```mongo
 npm run start
 ```
+
+This command will return a localhost link (localhost:1234)
